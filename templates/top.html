@@ -13,8 +13,15 @@
   <body>
     {% for weather in object_list %}
     <div class = 'text-center mt-4 offset-3 col-6'>
-     {{ weather.location }}
+    <h1> {{ weather.location }}</h1>
+    <div class='p-2 bg-light border'>
+      <button class='btn btn-primary'>{{weather.location}}の最新の情報を取得する</button>
+    <h2 class 'p-4'>天気</h2>
+    <span class = 'h3 p-4'>{{weather.weather}}</span>
+    <h2 class 'p-4'>気温</h2>
+    <span class = 'h3 p-4'>{{weather.temperature}}</span>
     </div>
+  </div>
      {% endfor %} 
     <!-- Optional JavaScript; choose one of the two! -->
 
