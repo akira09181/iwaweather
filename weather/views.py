@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from weather.serializers import WeatherSerializer
+from .serializer import WeatherSerializer
 from .models import Weather
 
 # Create your views here.

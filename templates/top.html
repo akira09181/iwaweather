@@ -7,19 +7,27 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <script>
+      function getData(id){
+        fetch(`/api/${id}`).then((response) => response.json()).then((json) => {
+          document.getElementById(`weather-${id}`).innerText = json.weather
+          document.getElementById(`temperature-${id}`).innerText = json.temperature
+        })
+      }
+    </script>
     <title>天気情報</title>
   </head>
   <body>
     {% for weather in object_list %}
     <div class = 'text-center mt-4 offset-3 col-6'>
+      {% csrf_token %}
     <h1> {{ weather.location }}</h1>
     <div class='p-2 bg-light border'>
-      <button class='btn btn-primary'>{{weather.location}}の最新の情報を取得する</button>
+      <button onclick='getData({{weather.id}})' class='btn btn-primary'>{{weather.location}}の最新の情報を取得する</button>
     <h2 class 'p-4'>天気</h2>
-    <span class = 'h3 p-4'>{{weather.weather}}</span>
+    <span id='weather-{{weather.id}}' class = 'h3 p-4'>{{weather.weather}}</span>
     <h2 class 'p-4'>気温</h2>
-    <span class = 'h3 p-4'>{{weather.temperature}}</span>
+    <span id='temperature-{{weather.id}}' class = 'h3 p-4'>{{weather.temperature}}</span>
     </div>
   </div>
      {% endfor %} 
